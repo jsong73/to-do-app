@@ -1,9 +1,10 @@
+//object destructuring 
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection")
 
 //class is child and model is parent
 class Tasks extends Model {}
-
+//will always need a class and extends when using init with sequelize
 Tasks.init(
     { 
         id: { 
@@ -23,7 +24,7 @@ Tasks.init(
     },
     {
         sequelize,
-        //creates timestamp when data was made
+        //creates timestamp when data was made in table automatically if true
         timestamps: true,
         //freezes the table name
         freezeTableName: true,
@@ -31,7 +32,7 @@ Tasks.init(
         modelName: "Task"
     }   
 );
-//exporting class
+//exporting class Tasks
 module.exports = Tasks;
 
 
