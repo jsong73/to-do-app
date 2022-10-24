@@ -28,7 +28,7 @@ res.sendFile("./index.html");
 
 //to connect to port using express
 //first parameter is the port number and second parameter is the callback function
-sequelize.sync({force: true}).then(() => {
+sequelize.sync({force: false }).then(() => {
     app.listen(PORT, (err) =>
     console.log(`listening to port ${PORT}`));
 });

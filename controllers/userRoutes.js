@@ -7,7 +7,7 @@ const { User, Tasks } = require("../models");
 //localhost:5500/api/user/
 router.get("/", async(req, res) => {
     try{
-        const userData = await User.findAndCountAll({
+        const userData = await User.findAll({
             include: [{ model: Tasks}],
         });
         console.log(userData);
