@@ -20,7 +20,7 @@ app.use("/api", controllers);
 
 //to connect to port using express
 //first parameter is the port number and second parameter is the callback function
-sequelize.sync({force: false}).then(() => {
+sequelize.sync({force: true}).then(() => {
     app.listen(PORT, (err) =>
     console.log(`listening to port ${PORT}`));
 });
