@@ -6,30 +6,39 @@ const sequelize = require("../config/connection")
 class Tasks extends Model {}
 //will always need a class and extends when using init with sequelize
 Tasks.init(
-    { 
+    {
         id: { 
         type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
-        title: {
-        type: DataTypes.STRING
+        name: {
+        type: DataTypes.STRING,
+        allowNull: false,
     }, 
-        text:{
-        type: DataTypes.STRING 
+        description:{
+        type: DataTypes.STRING, 
     },
-        completed:{
-        type: DataTypes.BOOLEAN
-    }
+        user_id:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references:{
+        model: "user",
+        key: "id",
+        },
+      },
     },
     {
+        //connecting to sequelize database
         sequelize,
-        //creates timestamp when data was made in table automatically if true
+        //create two columns - one for when you made the column and one for when you updated column
         timestamps: true,
-        //freezes the table name
+        //By default, without true, table will be called users
         freezeTableName: true,
+        //camel casing
         underscored: true,
-        modelName: "Task"
+        modelName: "tasks",
     }   
 );
 //exporting class Tasks
