@@ -15,8 +15,16 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+//connecting public folder, front end to server
+app.use(express.static("public"));
+
 //use all /api content in controllers folder - everything coming from the controllers folder will have /api at the front so no need to repeatedly write /api with each get request
 app.use("/api", controllers);
+
+//localhost:3000/
+app.get("/", (req,res) =>{
+res.sendFile("./index.html");
+});
 
 //to connect to port using express
 //first parameter is the port number and second parameter is the callback function
