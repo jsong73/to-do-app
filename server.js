@@ -7,6 +7,12 @@ const sequelize = require("./config/connection")
 const Model = require("./models");
 //importing controllers folder
 const controllers = require("./controllers")
+// Import express-handlebars
+const exphbs = require("express-handlebars")
+const hbs = exphbs.create({});
+// The following two lines of code are setting Handlebars.js as the default template engine.
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 //connect to the available port if not specified use port 3000
 const PORT = process.env.PORT || 3000;
@@ -18,8 +24,9 @@ app.use(express.urlencoded({extended: true}));
 //connecting public folder, front end to server
 app.use(express.static("public"));
 
-//use all /api content in controllers folder - everything coming from the controllers folder will have /api at the front so no need to repeatedly write /api with each get request
-app.use("/api", controllers);
+
+
+app.use(controllers)
 
 //localhost:3000/
 app.get("/", (req,res) =>{
