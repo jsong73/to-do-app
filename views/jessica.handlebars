@@ -1,1 +1,12 @@
 <p> THIS IS JESSICA </p>
+
+{{#each serializedData as | data |}}
+
+<p> {{ data.id }} </p>
+<p> {{ data.username }}</p>
+<p> {{ data.email }}</p>
+<p> {{ data.password }}</p>
+<p> {{ data.tasks.[0].title }} </p>
+
+{{/each}}
+

@@ -7,10 +7,9 @@ router.get("/jessica", async (req, res) => {
         include: [{ model: Tasks }],
        });
        console.log(userData)
-       const serializedData = userData.map((user) =>{ user.get({ plain: true})
-        });
+       const serializedData = userData.map((user) => user.get({ plain: true}));
        console.log(serializedData)
-       res.render("jessica")
+       res.render("jessica", {serializedData})
     } catch (err) {
         res.status(400).json(err);
     }
